@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/2.10.6/moment-with-locales.min.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/2.10.6/locales.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.4/moment-timezone-with-data.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+    <h1>TeamTime</h1>
+<div id="app">
+  <table>
+    <tr v-for="user in users">
+        <td><img class='avatar' src="{{ user.avatar}}" /></td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.timezone }}</td>
+        <td style="background-color:{{ user.hour | time_color}}">&nbsp;</td>
+        <td>{{ user.time }}</td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

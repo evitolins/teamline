@@ -1,0 +1,26 @@
+body {
+    font-family: "Helvitica Neue", sans-serif;
+}
+table {
+    border-collapse: collapse;
+}
+
+td:nth-child(2) {
+    font-weight: bold;
+}
+
+td {
+    padding: 5px 10px;
+}
+
+#app {
+  background: #eee;
+    padding: 20px;
+  border-radius: 16px;
+}
+
+.avatar {
+    border-radius: 30px;
+    width: 40px;
+    height: 40px;
+}
