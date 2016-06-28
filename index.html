@@ -12,7 +12,9 @@
   <title>JS Bin</title>
 </head>
 <body>
-    <h1><i class='fa fa-clock-o'></i>TeamTime</h1>
+    <header>
+<h1><i class='fa fa-clock-o'></i>TeamTime</h1>
+    </header>
 <div id="app">
   <table>
     <tr v-for="user in users">
@@ -20,11 +22,14 @@
         <td>{{ user.name }}</td>
         <td>{{ user.timezone }}</td>
         <td>
+            <div class="time_bar">
             <div class="time_block" v-for="h in user.hours" style="background-color:{{ h | time_color}}">&nbsp;</div>
+            </div>
         </td>
         <td>{{ user.time }}</td>
     </tr>
   </table>
 </div>
+    <footer id='footer'></footer>
 </body>
 </html>
