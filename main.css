@@ -1,24 +1,36 @@
 body {
     font-family: "Helvitica Neue", sans-serif;
+    background: #dfdfdf;
+
 }
 
 table {
     border-collapse: collapse;
-}
-
-td:nth-child(2) {
-    font-weight: bold;
+    width: 100%;
 }
 
 td {
     padding: 5px 10px;
     border-bottom: 1px solid #eee;
     white-space: nowrap;
+    background: #eee;
+}
+
+tr:nth-child(even) td {
+    background: #fafafa;
+}
+
+td:nth-child(2) {
+    font-weight: bold;
+}
+
+td:last-child {
+    text-align: right;
 }
 
 #app {
-  background: #eee;
-    padding: 20px;
+  background: none;
+  padding: 20px;
   border-radius: 16px;
 }
 
@@ -31,7 +43,7 @@ td {
 
 .time_block {
     float: left;
-    width: 5px;
+    width: 10px;
     height: 40px;
     outline: 1px solid rgba(255,255,255,0.2);
 }
