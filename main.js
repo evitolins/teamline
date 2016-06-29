@@ -27,7 +27,10 @@ var users = [
     new User('miko', "Asia/Tokyo"),
     new User('mick', "Australia/Sydney")
 ];
-var colors = ['#222', '#719dd6', '#84d648', '#5c9631', '#7c49ca'];
+
+
+var colors = ['#444', '#719dd6', '#84d648', '#5c9631', '#7c49ca'];
+var colors = ['#345', '#719dd6', '#f1cb3a', '#af9328', '#345890'];
 var color_info = ['sleep', 'early', 'workday', 'after hours', 'late'];
 
 var i,n,t,h,X;
@@ -53,8 +56,8 @@ for (i=0; i<users.length; i++) {
     h = parseInt(t.format('H'), 10);
     users[i].avatar = avatars[i];
     users[i].hour = h;
-    users[i].time = t.format("dddd, ha");
-    users[i].hours = generate_offset_hours(h, -12, 12);
+    users[i].time = t.format("dddd, H:ma");
+    users[i].hours = generate_offset_hours(h, 0, 24);
 }
 
 Vue.filter('time_color', function (value) {
@@ -67,7 +70,7 @@ Vue.filter('time_color', function (value) {
 });
 
 
-var elem_footer = document.getElementById('footer');
+var elem_footer = document.getElementById('time_key');
 var build_swatches = function () {
     var i;
     for(i=0; i<colors.length; i++) {

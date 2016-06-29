@@ -14,22 +14,21 @@
 <body>
     <header>
 <h1><i class='fa fa-clock-o'></i>TeamTime</h1>
+        <div id='time_key'></div>
     </header>
 <div id="app">
   <table>
-    <tr v-for="user in users">
+    <tr v-for="user in users" style="background-color:{{ user.hour | time_color}}">
         <td><img class="avatar" :src="user.avatar"/></td>
-        <td>{{ user.name }}</td>
-        <td>{{ user.timezone }}</td>
+        <td><div class="name">{{ user.name }}</div></td>
+        <td><div class='location'>{{ user.timezone }}</div>{{ user.time }}</td>
         <td>
             <div class="time_bar">
-            <div class="time_block" v-for="h in user.hours" style="background-color:{{ h | time_color}}">&nbsp;</div>
+            <div class="time_block" v-for="h in user.hours" style="background-color:{{ h | time_color}}">{{h}}</div>
             </div>
         </td>
-        <td>{{ user.time }}</td>
     </tr>
   </table>
 </div>
-    <footer id='footer'></footer>
 </body>
 </html>
