@@ -1,5 +1,5 @@
 body {
-    font-family: "Helvitica Neue", sans-serif;
+    font-family: 'Raleway', "Helvitica Neue", sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -87,11 +87,12 @@ footer {
     float: left;
     width: 4.1666%;
     height: 60px;
+    line-height: 60px;
     /* outline: 1px solid rgba(255,255,255,0.2); */
-    font-size: 7px;
+    font-size: 0.8em;
+    text-align: center;
     overflow: hidden;
-    color: rgba(255,255,255,0.7);
-    padding: 2px;
+    color: rgba(0,0,0,0.2);
     box-sizing: border-box;
 }
 
