@@ -50,15 +50,21 @@ var update_user_data = function (u) {
         u[i].hours = generate_offset_hours(h, 0, 24);
     }
 };
+
+
+var get_time_catatory = function (value) {
+    if (value >= 0 && value < 6) return 0;
+    if (value >= 6 && value < 9) return 1;
+    if (value >= 9 && value < 18) return 2;
+    if (value >= 18 && value < 21) return 3;
+    if (value >= 21 && value < 24) return 4;
+    if (value == 24) return 0;
+}
 }
 
 Vue.filter('time_color', function (value) {
-    if (value >= 0 && value < 6) return colors[0];
-    if (value >= 6 && value < 9) return colors[1];
-    if (value >= 9 && value < 18) return colors[2];
-    if (value >= 18 && value < 21) return colors[3];
-    if (value >= 21 && value < 24) return colors[4];
-    if (value == 24) return colors[0];
+    var cat = get_time_catatory(value);
+    return colors[cat];
 });
 
 
