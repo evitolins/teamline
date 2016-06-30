@@ -2,6 +2,18 @@ var User = function (name, timezone, avatar) {
   return { name : name, timezone: timezone, avatar: avatar };
 };
 
+Array.min = function( array ){
+    return Math.min.apply( Math, array );
+};
+
+Array.max = function( array ){
+    return Math.max.apply( Math, array );
+};
+
+var remap_range = function (value, low1, high1, low2, high2) {
+    return low2 + (value - low1) * (high2 - low2) / (high1 - low1);
+};
+
 var in_range = function (val, range) {
     return (val >= range[0] && val <= range[1] );
 };
@@ -36,10 +48,10 @@ var color_info = ['sleep', 'early', 'workday', 'after hours', 'late'];
 var i,n,t,h,X;
 
 
-var update_user_data = function (u) {
+var update_user_data = function (u, hour_offset) {
     moment.locale('en');
     var timezone = moment.tz.guess();
-    var currentTime = moment();
+    var currentTime = moment().add(hour_offset || 0, 'hour').startOf('hour');
     var currentLoc = moment.tz(currentTime, timezone);
     for (i=0; i<u.length; i++) {
         n = u[i].name;
@@ -59,7 +71,8 @@ var get_time_catatory = function (value) {
     if (value >= 18 && value < 21) return 3;
     if (value >= 21 && value < 24) return 4;
     if (value == 24) return 0;
-}
+};
+
 var get_rating = function (value) {
     if (value >= 0 && value < 6) return 0;
     if (value >= 6 && value < 9) return 1;
@@ -67,31 +80,36 @@ var get_rating = function (value) {
     if (value >= 18 && value < 21) return 2;
     if (value >= 21 && value < 24) return 1;
     if (value == 24) return 0;
+};
+
+var calc_column_strength = function () {
+    var strengths = [];
+    var column_totals = [];
+    for (i=0; i<users.length; i++) {
+        strengths[i] = [];
+        for (ii=0; ii<users[i].hours.length; ii++) {
+            strengths[i][ii] = get_rating(users[i].hours[ii]);
+        }
+    }
+    for (i=0; i<24; i++) {
+        column_totals.push(strengths.reduce(
+           function(sum, current){
+             return sum + current[i];
+           }, 0
+        ));
+    }
+
+    var adjusted_totals = [];
+    var min = Array.min(column_totals);
+    var max = Array.max(column_totals);
+    for (i=0; i<column_totals.length; i++) {
+        adjusted_totals.push(remap_range(column_totals[i], min, max, 3, 20));
+    }
+
+
+    return adjusted_totals;
 }
 
-
-// var strengths = [];
-// for (i=0; i<users.length; i++) {
-//     strengths[i] = [];
-//     for (ii=0; ii<users[i].hours.length; ii++) {
-//         strengths[i][ii] = get_rating(users[i].hours[ii]);
-//     }
-// }
-
-// var ratings = function () {
-//     var r = [];
-//     for (i=0; i<strengths.length; i++) {
-//         r[i] = [];
-//         sum = 0;
-//         for (ii=0; ii<strengths[i].length; ii++) {
-//             sum += strengths[i][ii];
-//         }
-//         r[i] = sum;
-//     }
-//     return r;
-// }
-// console.log(strengths);
-// console.log(ratings());
 
 
 Vue.filter('time_color', function (value) {
@@ -126,27 +144,34 @@ var elemCoords = function (e, elem) {
 
 
 update_user_data(users);
+calc_column_strength();
 build_swatches();
 
 var ui = new Vue({
   el: '#app',
   data: {
       users: users,
-      percentage: 0
+      range: 0,
+      percentage: 0,
+      column_strength: calc_column_strength()
   },
   watch: {
-    users: 'updateUsers'
+    users: 'updateUsers',
+    range: 'update'
   },
   methods: {
     'updateUsers' :  function () {
         update_user_data(self.users);
-        console.log('updating');
+        this.column_strength = calc_column_strength()
     },
     'showPercentage' : function (e) {
         var coords = elemCoords(e, e.currentTarget);
         var p = parseInt(coords.x, 10) / parseInt(e.currentTarget.offsetWidth, 10);
-        this.percentage = Math.round(p * 24);
+        this.percentage = Math.floor(p * 24);
 
+    },
+    'update' : function (e) {
+        update_user_data(users, this.range);
     }
   }
 });

@@ -23,7 +23,7 @@
     <tr v-for="user in users" style="background-color:{{ user.hour | time_color}}">
         <td><img class="avatar" :src="user.avatar"/></td>
         <td><div class="name">{{ user.name }}</div></td>
-        <td><div class='location'>{{ user.timezone }}</div>{{ user.time }}</td>
+        <td><div class="userdata_container"><div class='location'>{{ user.timezone }}</div>{{ user.time }}</div></td>
         <td>
             <div class="time_bar" v-on:mousemove.stop.prevent="showPercentage">
             <div class="time_block" v-for="h in user.hours" style="background-color:{{ h | time_color}}">{{h}}</div>
@@ -31,7 +31,13 @@
         </td>
     </tr>
   </table>
+  <div class="strength_container">
+    <div class="strength_cell"  v-for="column in column_strength" >
+      <div class="strength_bubble" style="width:{{column*2}}px; height:{{column}}px; margin-left:-{{column*2/2}}px;"></div>
+    </div>
+  </div>
   <div>{{percentage}}</div>
+  <input type=range min=0 max=24 step=1 v-model="range" debounce="10">
 </div>
 <script src="main.js"></script>
 </body>
