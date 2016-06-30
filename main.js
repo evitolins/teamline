@@ -30,7 +30,7 @@ var users = [
 
 
 var colors = ['#444', '#719dd6', '#84d648', '#5c9631', '#7c49ca'];
-var colors = ['#345', '#719dd6', '#f1cb3a', '#af9328', '#345890'];
+var colors = ['#345', '#719dd6', '#f1cb3a', '#ceac2d', '#345890'];
 var color_info = ['sleep', 'early', 'workday', 'after hours', 'late'];
 
 var i,n,t,h,X;
@@ -60,7 +60,39 @@ var get_time_catatory = function (value) {
     if (value >= 21 && value < 24) return 4;
     if (value == 24) return 0;
 }
+var get_rating = function (value) {
+    if (value >= 0 && value < 6) return 0;
+    if (value >= 6 && value < 9) return 1;
+    if (value >= 9 && value < 18) return 3;
+    if (value >= 18 && value < 21) return 2;
+    if (value >= 21 && value < 24) return 1;
+    if (value == 24) return 0;
 }
+
+
+// var strengths = [];
+// for (i=0; i<users.length; i++) {
+//     strengths[i] = [];
+//     for (ii=0; ii<users[i].hours.length; ii++) {
+//         strengths[i][ii] = get_rating(users[i].hours[ii]);
+//     }
+// }
+
+// var ratings = function () {
+//     var r = [];
+//     for (i=0; i<strengths.length; i++) {
+//         r[i] = [];
+//         sum = 0;
+//         for (ii=0; ii<strengths[i].length; ii++) {
+//             sum += strengths[i][ii];
+//         }
+//         r[i] = sum;
+//     }
+//     return r;
+// }
+// console.log(strengths);
+// console.log(ratings());
+
 
 Vue.filter('time_color', function (value) {
     var cat = get_time_catatory(value);
@@ -80,12 +112,41 @@ var build_swatches = function () {
     }
 };
 
+var elemCoords = function (e, elem) {
+    var rect = elem.getBoundingClientRect(),
+        offset = {
+            left: rect.left + document.body.scrollLeft,
+            top: rect.top + document.body.scrollTop
+        };
+    return {
+        x : (e.pageX - offset.left),
+        y : (e.pageY - offset.top)
+    };
+};
+
+
 update_user_data(users);
 build_swatches();
 
-new Vue({
+var ui = new Vue({
   el: '#app',
   data: {
-      users: users
+      users: users,
+      percentage: 0
+  },
+  watch: {
+    users: 'updateUsers'
+  },
+  methods: {
+    'updateUsers' :  function () {
+        update_user_data(self.users);
+        console.log('updating');
+    },
+    'showPercentage' : function (e) {
+        var coords = elemCoords(e, e.currentTarget);
+        var p = parseInt(coords.x, 10) / parseInt(e.currentTarget.offsetWidth, 10);
+        this.percentage = Math.round(p * 24);
+
+    }
   }
 });

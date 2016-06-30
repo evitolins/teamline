@@ -25,12 +25,13 @@
         <td><div class="name">{{ user.name }}</div></td>
         <td><div class='location'>{{ user.timezone }}</div>{{ user.time }}</td>
         <td>
-            <div class="time_bar">
+            <div class="time_bar" v-on:mousemove.stop.prevent="showPercentage">
             <div class="time_block" v-for="h in user.hours" style="background-color:{{ h | time_color}}">{{h}}</div>
             </div>
         </td>
     </tr>
   </table>
+  <div>{{percentage}}</div>
 </div>
 <script src="main.js"></script>
 </body>
