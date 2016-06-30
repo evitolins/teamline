@@ -1,5 +1,5 @@
-var User = function (name, timezone) {
-  return { name : name, timezone: timezone };
+var User = function (name, timezone, avatar) {
+  return { name : name, timezone: timezone, avatar: avatar };
 };
 
 var in_range = function (val, range) {
@@ -18,14 +18,14 @@ var generate_offset_hours = function (val, pre, post) {
 
 
 var users = [
-    new User('jimmy', "America/Los_Angeles"),
-    new User('jane', "America/San_Francisco"),
-    new User('frank', "America/New_York"),
-    new User('bobby', "Europe/London"),
-    new User('fred', "Europe/Riga"),
-    new User('carol', "Europe/Sofia"),
-    new User('miko', "Asia/Tokyo"),
-    new User('mick', "Australia/Sydney")
+    new User('Jimmy', "America/Los_Angeles", 'https://randomuser.me/api/portraits/men/75.jpg'),
+    new User('Jane', "America/Chicago", 'https://randomuser.me/api/portraits/men/65.jpg'),
+    new User('Frank', "America/New_York", 'https://randomuser.me/api/portraits/men/95.jpg'),
+    new User('Bobby', "Europe/London", 'https://randomuser.me/api/portraits/women/75.jpg'),
+    new User('Fred', "Europe/Riga", 'https://randomuser.me/api/portraits/women/85.jpg'),
+    new User('Carol', "Europe/Sofia", 'https://randomuser.me/api/portraits/women/95.jpg'),
+    new User('Miko', "Asia/Tokyo", 'https://randomuser.me/api/portraits/women/98.jpg'),
+    new User('Mick', "Australia/Sydney", 'https://randomuser.me/api/portraits/women/99.jpg')
 ];
 
 
@@ -35,29 +35,21 @@ var color_info = ['sleep', 'early', 'workday', 'after hours', 'late'];
 
 var i,n,t,h,X;
 
-var avatars = [
-    'https://randomuser.me/api/portraits/men/75.jpg',
-    'https://randomuser.me/api/portraits/men/65.jpg',
-    'https://randomuser.me/api/portraits/men/95.jpg',
-    'https://randomuser.me/api/portraits/women/75.jpg',
-    'https://randomuser.me/api/portraits/women/85.jpg',
-    'https://randomuser.me/api/portraits/women/95.jpg',
-    'https://randomuser.me/api/portraits/women/98.jpg',
-    'https://randomuser.me/api/portraits/women/99.jpg',
-];
 
-moment.locale('en');
-var timezone = moment.tz.guess();
-var currentTime = moment();
-var currentLoc = moment.tz(currentTime, timezone);
-for (i=0; i<users.length; i++) {
-    n = users[i].name;
-    t = currentLoc.clone().tz(users[i].timezone);
-    h = parseInt(t.format('H'), 10);
-    users[i].avatar = avatars[i];
-    users[i].hour = h;
-    users[i].time = t.format("dddd, H:ma");
-    users[i].hours = generate_offset_hours(h, 0, 24);
+var update_user_data = function (u) {
+    moment.locale('en');
+    var timezone = moment.tz.guess();
+    var currentTime = moment();
+    var currentLoc = moment.tz(currentTime, timezone);
+    for (i=0; i<u.length; i++) {
+        n = u[i].name;
+        t = currentLoc.clone().tz(u[i].timezone);
+        h = parseInt(t.format('H'), 10);
+        u[i].hour = h;
+        u[i].time = t.format("dddd, H:mm a");
+        u[i].hours = generate_offset_hours(h, 0, 24);
+    }
+};
 }
 
 Vue.filter('time_color', function (value) {
@@ -82,6 +74,7 @@ var build_swatches = function () {
     }
 };
 
+update_user_data(users);
 build_swatches();
 
 new Vue({
