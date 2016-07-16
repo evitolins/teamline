@@ -16,16 +16,16 @@ which deal with teams and already posess timezone & scheduling data.
 
 Todo
 ---------------------------------------
-- [] Add user-specific availablity
-- [] Add user filtering
-- [] Add groups feature to quickly filter specific users
-- [] Consider service integrations
-    - [] Slack user info (name, timezone, avatar...etc)
-    - [] Google On Air
-    - [] Google Calendar
-    - [] Asana Tickets
-    - [] Build Doodle
-- [] Add "sacrifice counter" for each individual. This would be used for balancing extreme meeting times for any one user. 
+- [ ] Add user-specific availablity
+- [ ] Add user filtering
+- [ ] Add groups feature to quickly filter specific users
+- [ ] Consider service integrations
+    - [ ] Slack user info (name, timezone, avatar...etc)
+    - [ ] Google On Air
+    - [ ] Google Calendar
+    - [ ] Asana Tickets
+    - [ ] Build Doodle
+- [ ] Add "sacrifice counter" for each individual. This would be used for balancing extreme meeting times for any one user. 
 
 
 Reference
