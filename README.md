@@ -1,11 +1,11 @@
 teamline
 =======================================
-![screenshot](screenshot_1.png)
 A simple tool for finding best meeting times for distributed teams.
 
 
 Details
 ---------------------------------------
+![screenshot](screenshot_1.png)
 Allows custom settings for availability and a clear view of what times work
 best for the majority of the team distributed across many timezones.
 
