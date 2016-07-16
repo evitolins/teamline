@@ -33,11 +33,11 @@
   </table>
   <div class="strength_container">
     <div class="strength_cell"  v-for="column in column_strength" >
-      <div class="strength_bubble" style="width:{{column*2}}px; height:{{column}}px; margin-left:-{{column*2/2}}px;"></div>
+      <div class="strength_bubble" style="width:{{column*2}}px; height:{{10}}px; margin-left:-{{column*2/2}}px;"></div>
     </div>
   </div>
   <div>{{percentage}}</div>
-  <input type=range min=0 max=24 step=1 v-model="range" debounce="10">
+  <br /><input type=range min=0 max=24 step=1 v-model="range" debounce="10">
 </div>
 <script src="main.js"></script>
 </body>
