@@ -161,7 +161,7 @@ var ui = new Vue({
   },
   methods: {
     'updateUsers' :  function () {
-        update_user_data(self.users);
+        update_user_data(this.users);
         this.column_strength = calc_column_strength()
     },
     'showPercentage' : function (e) {
