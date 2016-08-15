@@ -1,0 +1,72 @@
+[
+    {
+        "id" : 1,
+        "name" : "Wei",
+        "name_first" : "string",
+        "name_last" : "string",
+        "location" : "America/San_Francisco",
+        "avatar" : "https://randomuser.me/api/portraits/men/35.jpg",
+        "availability" : [],
+        "sacrifice_level" : 23
+    },
+    {
+        "id" : 2,
+        "name" : "Eriks",
+        "name_first" : "string",
+        "name_last" : "string",
+        "location" : "America/Los_Angeles",
+        "avatar" : "https://randomuser.me/api/portraits/men/45.jpg",
+        "availability" : [],
+        "sacrifice_level" : 23
+    },
+    {
+        "id" : 3,
+        "name" : "Sanjit",
+        "name_first" : "string",
+        "name_last" : "string",
+        "location" : "America/Los_Angeles",
+        "avatar" : "https://randomuser.me/api/portraits/men/55.jpg",
+        "availability" : [],
+        "sacrifice_level" : 23
+    },
+    {
+        "id" : 4,
+        "name" : "Marin",
+        "name_first" : "string",
+        "name_last" : "string",
+        "location" : "America/New_York",
+        "avatar" : "https://randomuser.me/api/portraits/men/65.jpg",
+        "availability" : [],
+        "sacrifice_level" : 23
+    },
+    {
+        "id" : 5,
+        "name" : "Georgi",
+        "name_first" : "string",
+        "name_last" : "string",
+        "location" : "America/New_York",
+        "avatar" : "https://randomuser.me/api/portraits/men/75.jpg",
+        "availability" : [],
+        "sacrifice_level" : 23
+    },
+    {
+        "id" : 6,
+        "name" : "Martina",
+        "name_first" : "string",
+        "name_last" : "string",
+        "location" : "Europe/London",
+        "avatar" : "https://randomuser.me/api/portraits/women/75.jpg",
+        "availability" : [],
+        "sacrifice_level" : 23
+    },
+    {
+        "id" : 7,
+        "name" : "Dimiter",
+        "name_first" : "string",
+        "name_last" : "string",
+        "location" : "Europe/Sofia",
+        "avatar" : "https://randomuser.me/api/portraits/men/95.jpg",
+        "availability" : [],
+        "sacrifice_level" : 23
+    }
+]

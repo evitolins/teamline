@@ -1,0 +1,23 @@
+# MEETING
+{
+    "id" : 1
+    "title" : "string",
+    "description" : "",
+    "members" : []
+    "members_required" : []
+    "time_start" : datetime
+    "time_end" : datetime
+}
+
+
+# USER
+{
+    "id" : 1
+    "name_first" : "string"
+    "name_last" : "string"
+    "nickname" : "string"
+    "avatar" : "string"
+    "timezone" : datetime
+    "availability" : []
+    "sacrifice_level" : 23
+}
