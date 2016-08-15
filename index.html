@@ -40,6 +40,9 @@
   </div>
   <div>{{percentage}}</div>
   <br /><input type=range min=0 max=24 step=1 v-model="range" debounce="10">
+  <br /><select v-model="current_pallete">
+    <option  v-for="pallete in palletes" v-bind:value="$index">{{pallete.name}}</option>
+  </select>
 </div>
 <script src="main.js"></script>
 </body>

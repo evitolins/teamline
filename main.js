@@ -53,21 +53,28 @@ var users = [
     new User('Mick', "Australia/Sydney", 'https://randomuser.me/api/portraits/men/47.jpg'),
 ];
 
-// Old Pallete
-// var color_levels = [
-//     {'name' : 'sleep', color: '#444'},
-//     {'name' : 'early', color: '#719dd6'},
-//     {'name' : 'workday', color: '#84d648'},
-//     {'name' : 'after hours', color: '#5c9631'},
-//     {'name' : 'late', color: '#7c49ca'},
-// ];
 
-var color_levels = [
-    {'name' : 'sleep', color: '#345'},
-    {'name' : 'early', color: '#719dd6'},
-    {'name' : 'workday', color: '#f1cb3a'},
-    {'name' : 'after hours', color: '#ceac2d'},
-    {'name' : 'late', color: '#345890'},
+var palletes = [
+    {
+        name : "Sunlight",
+        colors : [
+                {'name' : 'sleep', color: '#345'},
+                {'name' : 'early', color: '#719dd6'},
+                {'name' : 'workday', color: '#f1cb3a'},
+                {'name' : 'after hours', color: '#ceac2d'},
+                {'name' : 'late', color: '#345890'},
+            ]
+    },
+    {
+        name : "Go Time",
+        colors : [
+                {'name' : 'piss off', color: '#444'},
+                {'name' : 'early', color: '#719dd6'},
+                {'name' : 'time to ROCK!!!', color: '#84d648'},
+                {'name' : 'after hours', color: '#5c9631'},
+                {'name' : 'late', color: '#7c49ca'},
+            ]
+    },
 ];
 
 
@@ -145,7 +152,7 @@ var calc_column_strength = function () {
 
 Vue.filter('time_color', function (value) {
     var cat = get_time_catatory(value);
-    return color_levels[cat].color;
+    return this.color_levels[cat].color;
 });
 
 
@@ -158,14 +165,17 @@ var ui = new Vue({
   el: '#app',
   data: {
       users: users,
-      color_levels: color_levels,
+      color_levels: palletes[0].colors,
       range: 0,
       percentage: 0,
-      column_strength: calc_column_strength()
+      column_strength: calc_column_strength(),
+      current_pallete: 0,
+      palletes: palletes,
   },
   watch: {
     users: 'updateUsers',
-    range: 'update'
+    range: 'update',
+    current_pallete: 'update'
   },
   methods: {
     'updateUsers' :  function () {
@@ -178,6 +188,8 @@ var ui = new Vue({
         this.percentage = Math.floor(p * 24);
     },
     'update' : function (e) {
+        console.log(this.current_pallete);
+        this.color_levels = palletes[parseInt(this.current_pallete,10)].colors;
         update_user_data(this.users, this.range);
     }
   }
