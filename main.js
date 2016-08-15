@@ -31,13 +31,14 @@ var generate_offset_hours = function (val, pre, post) {
 
 var users = [
     new User('Jimmy', "America/Los_Angeles", 'https://randomuser.me/api/portraits/men/75.jpg'),
-    new User('Jane', "America/Chicago", 'https://randomuser.me/api/portraits/men/65.jpg'),
+    new User('Jane', "America/Chicago", 'https://randomuser.me/api/portraits/women/65.jpg'),
     new User('Frank', "America/New_York", 'https://randomuser.me/api/portraits/men/95.jpg'),
     new User('Bobby', "Europe/London", 'https://randomuser.me/api/portraits/women/75.jpg'),
-    new User('Fred', "Europe/Riga", 'https://randomuser.me/api/portraits/women/85.jpg'),
+    new User('Fred', "Europe/Riga", 'https://randomuser.me/api/portraits/men/14.jpg'),
     new User('Carol', "Europe/Sofia", 'https://randomuser.me/api/portraits/women/95.jpg'),
+    new User('Getoo', "Asia/Calcutta", 'https://randomuser.me/api/portraits/men/99.jpg'),
     new User('Miko', "Asia/Tokyo", 'https://randomuser.me/api/portraits/women/98.jpg'),
-    new User('Mick', "Australia/Sydney", 'https://randomuser.me/api/portraits/women/99.jpg')
+    new User('Mick', "Australia/Sydney", 'https://randomuser.me/api/portraits/men/47.jpg'),
 ];
 
 
