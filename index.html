@@ -13,12 +13,14 @@
   <meta name="viewport" content="width=device-width">
   <title>JS Bin</title>
 </head>
-<body>
+<body id="app">
     <header>
 <h1 style="font-family: 'Codystar', cursive;"><i class='fa fa-clock-o'></i>TeamLine</h1>
-        <div id='time_key'></div>
+        <div id='time_key'>
+          <div v-for="level in color_levels" class='key_pill' style="background-color:{{level.color}}">{{level.name}}</div>
+        </div>
     </header>
-<div id="app">
+<div>
   <table>
     <tr v-for="user in users" style="background-color:{{ user.hour | time_color}}">
         <td><img class="avatar" :src="user.avatar"/></td>
