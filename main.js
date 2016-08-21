@@ -53,6 +53,14 @@ var users = [
     new User('Mick', "Australia/Sydney", 'https://randomuser.me/api/portraits/men/47.jpg'),
 ];
 
+var filtered = []; for (var i = 0; i < users.length; i++) { filtered.push(i); }
+var user_groups = [
+        {name: "all", members: filtered},
+        {name: "group 1", members: [1,2,3,4]},
+        {name: "group 2", members: [1,3,5,7,9]},
+        {name: "group 3", members: [2,4,6]}
+    ];
+
 
 var palletes = [
     {
@@ -68,13 +76,23 @@ var palletes = [
     {
         name : "Go Time",
         colors : [
-                {'name' : 'piss off', color: '#444'},
-                {'name' : 'early', color: '#719dd6'},
+                {'name' : 'Zzzzzzzz', color: '#444'},
+                {'name' : 'where\'s the coffee', color: '#719dd6'},
                 {'name' : 'time to ROCK!!!', color: '#84d648'},
-                {'name' : 'after hours', color: '#5c9631'},
-                {'name' : 'late', color: '#7c49ca'},
+                {'name' : 'time for a drink', color: '#5c9631'},
+                {'name' : 'time for netflix', color: '#7c49ca'},
             ]
     },
+    {
+        name:"Rabbit Ears",
+        colors:[
+                {'name' : 'A', color: '#444'},
+                {'name' : 'B', color: '#777'},
+                {'name' : 'C', color: '#aaa'},
+                {'name' : 'D', color: '#ccc'},
+                {'name' : 'E', color: '#eee'}
+            ]
+    }
 ];
 
 
@@ -165,6 +183,9 @@ var ui = new Vue({
   el: '#app',
   data: {
       users: users,
+      filtered: filtered,
+      user_group_idx: 0,
+      user_groups: user_groups,
       color_levels: palletes[0].colors,
       range: 0,
       percentage: 0,
@@ -175,7 +196,8 @@ var ui = new Vue({
   watch: {
     users: 'updateUsers',
     range: 'update',
-    current_pallete: 'update'
+    current_pallete: 'update',
+    user_group_idx: 'update_filter',
   },
   methods: {
     'updateUsers' :  function () {
@@ -191,6 +213,9 @@ var ui = new Vue({
         console.log(this.current_pallete);
         this.color_levels = palletes[parseInt(this.current_pallete,10)].colors;
         update_user_data(this.users, this.range);
+    },
+    'update_filter' : function (e) {
+        this.filtered = this.user_groups[this.user_group_idx].members;
     }
   }
 });

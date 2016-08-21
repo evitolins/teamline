@@ -21,8 +21,9 @@
         </div>
     </header>
 <div>
-  <table>
+  <table class="teamline_grid">
     <tr v-for="user in users" style="background-color:{{ user.hour | time_color}}">
+      <template v-if="filtered.indexOf($index) != -1">
         <td><img class="avatar" :src="user.avatar"/></td>
         <td><div class="name">{{ user.name }}</div></td>
         <td><div class="userdata_container"><div class='location'>{{ user.timezone }}</div>{{ user.time }}</div></td>
@@ -31,6 +32,7 @@
             <div class="time_block" v-for="h in user.hours" style="background-color:{{ h | time_color}}">{{h}}</div>
             </div>
         </td>
+      </template>
     </tr>
   </table>
   <div class="strength_container">
@@ -40,10 +42,25 @@
   </div>
   <div>{{percentage}}</div>
   <br /><input type=range min=0 max=24 step=1 v-model="range" debounce="10">
-  <br /><select v-model="current_pallete">
-    <option  v-for="pallete in palletes" v-bind:value="$index">{{pallete.name}}</option>
+  <br /><select v-model="filtered" class="user_select" multiple>
+    <option v-for="user in users" v-bind:value="$index">{{user.name}}</option>
   </select>
-</div>
+  <br />
+  <template v-for="pallete in palletes">
+    <input type="radio" id="{{pallete.name}}" v-bind:value="$index" v-model="current_pallete">
+    <label for="{{pallete.name}}">{{pallete.name}}</label>
+    <table class='time_key_mini'>
+      <tr>
+      <td v-for="level in pallete.colors" class='key_pill_mini' style="background-color:{{level.color}}"></td>
+      <tr>
+    </table>
+    <br />
+  </template>
+  <br /><select v-model="user_group_idx">
+    <option v-for="group in user_groups" v-bind:value="$index">{{group.name}}</option>
+  </select>
+
+  </div>
 <script src="main.js"></script>
 </body>
 </html>

@@ -15,12 +15,12 @@ h1 {
     margin: 0;
 }
 
-table {
+table.teamline_grid {
     border-collapse: collapse;
     width: 100%;
 }
 
-td {
+.teamline_grid td {
   color: #fff;
     padding: 5px 10px;
 /*     border-bottom: 1px solid #eee;
@@ -28,23 +28,23 @@ td {
     /* background: #eee; */
 }
 
-tr:nth-child(even) td {
+.teamline_grid tr:nth-child(even) td {
     /* background: #fafafa; */
 }
 
-td:nth-child(2) {
+.teamline_grid td:nth-child(2) {
     width: 1%;
     padding-right: 20px;
 }
 
-td:first-child {
+.teamline_grid td:first-child {
     width: 30px;
 }
-td:nth-child(3) {
+.teamline_grid td:nth-child(3) {
     width: 1%;
     text-align: right;
 }
-td:nth-child(4) {
+.teamline_grid td:nth-child(4) {
     padding: 0;
 }
 
@@ -99,10 +99,14 @@ footer {
     box-sizing: border-box;
 }
 
-#time_key {
+.time_key {
     position: absolute;
     right: 20px;
     top: 18px;
+}
+
+.time_key_mini {
+    position: relative;
 }
 
 .key_pill {
@@ -115,6 +119,14 @@ footer {
     border-radius : 2px;
     line-height : 2em;
     margin: 2px;
+}
+
+.key_pill_mini {
+    float: left;
+    font-size : 0.5em;
+    width : 18px;
+    height : 4px;
+    margin: 0 0 0 1px;
 }
 
 .strength_container {
@@ -142,4 +154,20 @@ footer {
     border-radius: 0 0 40% 40%;
     position: relative;
     left: 50%;
+}
+
+.user_select {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 140px;
+    font-size: 1em;
+    padding: 4px;
+    border: 0;
+    overflow: auto;
+}
+
+.user_select option {
+    padding: 3px 6px;
 }
